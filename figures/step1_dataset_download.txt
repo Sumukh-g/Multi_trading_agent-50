@@ -1,0 +1,33 @@
+
+================================================================================
+DOWNLOADING MARKET DATA
+================================================================================
+
+Downloading data for 20 tickers...
+Using yfinance API with retry logic...
+
+[1/20] AAPL... ✓ Downloaded 730 rows
+[2/20] MSFT... ✓ Downloaded 730 rows
+[3/20] GOOGL... ✓ Downloaded 730 rows
+[4/20] AMZN... ✓ Downloaded 730 rows
+[5/20] TSLA... ✓ Downloaded 730 rows
+[6/20] META... ✓ Downloaded 730 rows
+[7/20] NVDA... ✓ Downloaded 730 rows
+[8/20] JPM... ✓ Downloaded 730 rows
+[9/20] BAC... ✓ Downloaded 730 rows
+[10/20] V... ✓ Downloaded 730 rows
+[11/20] MA... ✓ Downloaded 730 rows
+[12/20] UNH... ✓ Downloaded 730 rows
+[13/20] HD... ✓ Downloaded 730 rows
+[14/20] DIS... ✓ Downloaded 730 rows
+[15/20] PG... ✓ Downloaded 730 rows
+[16/20] CSCO... ✓ Downloaded 730 rows
+[17/20] CVX... ✓ Downloaded 730 rows
+[18/20] XOM... ✓ Downloaded 730 rows
+[19/20] WMT... ✓ Downloaded 730 rows
+[20/20] JNJ... ✓ Downloaded 730 rows
+
+Download complete!
+Total files saved: 20 parquet files in raw/ directory
+Total data points: 14,600 rows
+================================================================================

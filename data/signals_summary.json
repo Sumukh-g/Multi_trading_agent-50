@@ -1,0 +1,19 @@
+{
+  "generated_at": "2025-12-05T07:30:00",
+  "mode": "balanced",
+  "total_signals": 20,
+  "actionable": 0,
+  "buy_signals": 3,
+  "sell_signals": 3,
+  "hold_signals": 0,
+  "avoid_signals": 14,
+  "avg_confidence": 0.548,
+  "avg_signal_strength": 51.3,
+  "top_picks": [
+    {"ticker": "GOOGL", "action": "BUY", "signal_strength": 68.3, "exp_30d_return": 0.0894},
+    {"ticker": "BAC", "action": "BUY", "signal_strength": 66.8, "exp_30d_return": 0.0738},
+    {"ticker": "UNH", "action": "AVOID", "signal_strength": 64.7, "exp_30d_return": 0.0722},
+    {"ticker": "CSCO", "action": "BUY", "signal_strength": 64.4, "exp_30d_return": 0.0698},
+    {"ticker": "PG", "action": "AVOID", "signal_strength": 63.6, "exp_30d_return": 0.0671}
+  ]
+}

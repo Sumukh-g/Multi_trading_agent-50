@@ -1,0 +1,2995 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantitative Trading Signals & Portfolio</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    .header h1 {
+      margin: 0 0 10px 0;
+      font-size: 2.5em;
+      font-weight: 700;
+    }
+    .header p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 1.1em;
+    }
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      padding: 20px;
+      background: #f8f9fa;
+      border-bottom: 2px solid #e9ecef;
+    }
+    .stat-box {
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 2em;
+      font-weight: bold;
+      color: #667eea;
+    }
+    .stat-label {
+      color: #6c757d;
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+    .content {
+      padding: 30px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      font-size: 0.9em;
+    }
+    th {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 12px 8px;
+      text-align: right;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    th:first-child {
+      text-align: left;
+    }
+    td {
+      padding: 10px 8px;
+      text-align: right;
+      border-bottom: 1px solid #e9ecef;
+    }
+    td:first-child {
+      text-align: left;
+      font-weight: 600;
+    }
+    tr:hover {
+      background: #f8f9fa;
+    }
+    .actionable {
+      background: #d4edda !important;
+      border-left: 4px solid #28a745;
+    }
+    .unsure {
+      background: #fff3cd !important;
+      border-left: 4px solid #ffc107;
+    }
+    .long {
+      color: #28a745;
+      font-weight: bold;
+    }
+    .short {
+      color: #dc3545;
+      font-weight: bold;
+    }
+    .portfolio-section {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 3px solid #e9ecef;
+    }
+    .portfolio-section h2 {
+      color: #667eea;
+      margin-bottom: 20px;
+    }
+    .portfolio-table {
+      background: #f8f9fa;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .portfolio-table th {
+      background: #495057;
+    }
+    .weight-bar {
+      background: #28a745;
+      height: 20px;
+      border-radius: 10px;
+      display: inline-block;
+      min-width: 30px;
+      text-align: center;
+      color: white;
+      line-height: 20px;
+      font-size: 0.85em;
+      padding: 0 8px;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #6c757d;
+      font-size: 0.9em;
+      border-top: 1px solid #e9ecef;
+    }
+    @media (max-width: 768px) {
+      table { font-size: 0.75em; }
+      th, td { padding: 6px 4px; }
+      .header h1 { font-size: 1.8em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📊 Quantitative Trading Signals</h1>
+      <p>AI-Powered Portfolio Analysis & Recommendations</p>
+    </div>
+    
+    <div class="stats">
+      <div class="stat-box">
+        <div class="stat-value">20</div>
+        <div class="stat-label">Total Signals</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">0</div>
+        <div class="stat-label">Actionable Trades</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">0.0%</div>
+        <div class="stat-label">Actionable Rate</div>
+      </div>
+    </div>
+    
+    <div class="content">
+      <h2 style="color: #667eea; margin-top: 0;">Trading Signals</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Ticker</th><th>Price</th><th>Prob 5Pct 30D</th><th>Confidence</th><th>Tau</th><th>Exp 30D Return</th><th>Pi Low</th><th>Pi High</th><th>Pi Width</th><th>Decision</th><th>Reason</th><th>Atr Pct</th><th>Size</th><th>Stop</th><th>Target1</th><th>Dma200</th><th>Adx14</th><th>Mom 60</th><th>Gates Pass</th><th>Gates Reason</th><th>Actionable</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                META
+              
+            </td>
+            
+            <td>
+              
+                $661.53
+              
+            </td>
+            
+            <td>
+              
+                60.36%
+              
+            </td>
+            
+            <td>
+              
+                60.36%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                -9.05%
+              
+            </td>
+            
+            <td>
+              
+                -0.2532349978233753
+              
+            </td>
+            
+            <td>
+              
+                0.0722080413252642
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.60 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.022693048315717
+              
+            </td>
+            
+            <td>
+              
+                $0.02
+              
+            </td>
+            
+            <td>
+              
+                $691.55
+              
+            </td>
+            
+            <td>
+              
+                $595.38
+              
+            </td>
+            
+            <td>
+              
+                -0.0141269785126792
+              
+            </td>
+            
+            <td>
+              
+                51.83782561501988
+              
+            </td>
+            
+            <td>
+              
+                -0.119688632267528
+              
+            </td>
+            
+            <td>
+              
+                False
+              
+            </td>
+            
+            <td>
+              
+                Price below DMA200
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                XOM
+              
+            </td>
+            
+            <td>
+              
+                $117.14
+              
+            </td>
+            
+            <td>
+              
+                40.57%
+              
+            </td>
+            
+            <td>
+              
+                59.43%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                -4.27%
+              
+            </td>
+            
+            <td>
+              
+                -0.2054659650372287
+              
+            </td>
+            
+            <td>
+              
+                0.1199770741114109
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.59 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0188907021445392
+              
+            </td>
+            
+            <td>
+              
+                $0.01
+              
+            </td>
+            
+            <td>
+              
+                $121.57
+              
+            </td>
+            
+            <td>
+              
+                $105.43
+              
+            </td>
+            
+            <td>
+              
+                0.0736784770754885
+              
+            </td>
+            
+            <td>
+              
+                8.344646325120111
+              
+            </td>
+            
+            <td>
+              
+                0.0503517471402052
+              
+            </td>
+            
+            <td>
+              
+                False
+              
+            </td>
+            
+            <td>
+              
+                ADX too low
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                JNJ
+              
+            </td>
+            
+            <td>
+              
+                $202.48
+              
+            </td>
+            
+            <td>
+              
+                58.12%
+              
+            </td>
+            
+            <td>
+              
+                58.12%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                -6.92%
+              
+            </td>
+            
+            <td>
+              
+                -0.2318905912365407
+              
+            </td>
+            
+            <td>
+              
+                0.0935524479120988
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.58 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0144738237083732
+              
+            </td>
+            
+            <td>
+              
+                $0.03
+              
+            </td>
+            
+            <td>
+              
+                $208.34
+              
+            </td>
+            
+            <td>
+              
+                $182.23
+              
+            </td>
+            
+            <td>
+              
+                0.2063121891631491
+              
+            </td>
+            
+            <td>
+              
+                66.80870524923795
+              
+            </td>
+            
+            <td>
+              
+                0.1591421055132615
+              
+            </td>
+            
+            <td>
+              
+                True
+              
+            </td>
+            
+            <td>
+              
+                nan
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                HD
+              
+            </td>
+            
+            <td>
+              
+                $351.17
+              
+            </td>
+            
+            <td>
+              
+                42.20%
+              
+            </td>
+            
+            <td>
+              
+                57.80%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                3.24%
+              
+            </td>
+            
+            <td>
+              
+                -0.1303206221163751
+              
+            </td>
+            
+            <td>
+              
+                0.1951224170322644
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.58 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0248431931174689
+              
+            </td>
+            
+            <td>
+              
+                $0.01
+              
+            </td>
+            
+            <td>
+              
+                $333.72
+              
+            </td>
+            
+            <td>
+              
+                $386.29
+              
+            </td>
+            
+            <td>
+              
+                -0.0530011953499508
+              
+            </td>
+            
+            <td>
+              
+                52.60797439744709
+              
+            </td>
+            
+            <td>
+              
+                -0.144686240704698
+              
+            </td>
+            
+            <td>
+              
+                False
+              
+            </td>
+            
+            <td>
+              
+                Price below DMA200
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                TSLA
+              
+            </td>
+            
+            <td>
+              
+                $454.53
+              
+            </td>
+            
+            <td>
+              
+                57.77%
+              
+            </td>
+            
+            <td>
+              
+                57.77%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                -0.04%
+              
+            </td>
+            
+            <td>
+              
+                -0.1631565058299617
+              
+            </td>
+            
+            <td>
+              
+                0.1622865333186778
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.58 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0373038358308505
+              
+            </td>
+            
+            <td>
+              
+                $0.00
+              
+            </td>
+            
+            <td>
+              
+                $488.44
+              
+            </td>
+            
+            <td>
+              
+                $409.08
+              
+            </td>
+            
+            <td>
+              
+                0.3286974708712806
+              
+            </td>
+            
+            <td>
+              
+                41.24209624291719
+              
+            </td>
+            
+            <td>
+              
+                0.3069093062246153
+              
+            </td>
+            
+            <td>
+              
+                False
+              
+            </td>
+            
+            <td>
+              
+                Expected move too small
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                V
+              
+            </td>
+            
+            <td>
+              
+                $327.10
+              
+            </td>
+            
+            <td>
+              
+                43.15%
+              
+            </td>
+            
+            <td>
+              
+                56.85%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                3.39%
+              
+            </td>
+            
+            <td>
+              
+                -0.1288360227761003
+              
+            </td>
+            
+            <td>
+              
+                0.1966070163725393
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.57 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0167357998134345
+              
+            </td>
+            
+            <td>
+              
+                $0.01
+              
+            </td>
+            
+            <td>
+              
+                $316.15
+              
+            </td>
+            
+            <td>
+              
+                $359.81
+              
+            </td>
+            
+            <td>
+              
+                -0.0488240497241923
+              
+            </td>
+            
+            <td>
+              
+                37.61602494733504
+              
+            </td>
+            
+            <td>
+              
+                -0.0306756982723124
+              
+            </td>
+            
+            <td>
+              
+                False
+              
+            </td>
+            
+            <td>
+              
+                Price below DMA200
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                AMZN
+              
+            </td>
+            
+            <td>
+              
+                $229.11
+              
+            </td>
+            
+            <td>
+              
+                55.73%
+              
+            </td>
+            
+            <td>
+              
+                55.73%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                2.21%
+              
+            </td>
+            
+            <td>
+              
+                -0.1406187525316577
+              
+            </td>
+            
+            <td>
+              
+                0.1848242866169818
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.56 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0243862901202554
+              
+            </td>
+            
+            <td>
+              
+                $0.01
+              
+            </td>
+            
+            <td>
+              
+                $217.94
+              
+            </td>
+            
+            <td>
+              
+                $252.02
+              
+            </td>
+            
+            <td>
+              
+                0.0667907096751824
+              
+            </td>
+            
+            <td>
+              
+                50.03802948525311
+              
+            </td>
+            
+            <td>
+              
+                -0.0052967534016605
+              
+            </td>
+            
+            <td>
+              
+                False
+              
+            </td>
+            
+            <td>
+              
+                Expected move too small
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                DIS
+              
+            </td>
+            
+            <td>
+              
+                $105.47
+              
+            </td>
+            
+            <td>
+              
+                44.42%
+              
+            </td>
+            
+            <td>
+              
+                55.58%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                1.40%
+              
+            </td>
+            
+            <td>
+              
+                -0.1486937472606268
+              
+            </td>
+            
+            <td>
+              
+                0.1767492918880127
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.56 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0212653468851456
+              
+            </td>
+            
+            <td>
+              
+                $0.00
+              
+            </td>
+            
+            <td>
+              
+                $100.98
+              
+            </td>
+            
+            <td>
+              
+                $116.02
+              
+            </td>
+            
+            <td>
+              
+                -0.0367602045722244
+              
+            </td>
+            
+            <td>
+              
+                36.3090681558637
+              
+            </td>
+            
+            <td>
+              
+                -0.0891268642648427
+              
+            </td>
+            
+            <td>
+              
+                False
+              
+            </td>
+            
+            <td>
+              
+                Price below DMA200
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                NVDA
+              
+            </td>
+            
+            <td>
+              
+                $183.38
+              
+            </td>
+            
+            <td>
+              
+                55.50%
+              
+            </td>
+            
+            <td>
+              
+                55.50%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                -6.70%
+              
+            </td>
+            
+            <td>
+              
+                -0.2297266320187237
+              
+            </td>
+            
+            <td>
+              
+                0.0957164071299158
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.55 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0375235200259545
+              
+            </td>
+            
+            <td>
+              
+                $0.01
+              
+            </td>
+            
+            <td>
+              
+                $197.14
+              
+            </td>
+            
+            <td>
+              
+                $165.04
+              
+            </td>
+            
+            <td>
+              
+                0.1868656888643718
+              
+            </td>
+            
+            <td>
+              
+                67.8043030020741
+              
+            </td>
+            
+            <td>
+              
+                0.0342330685099401
+              
+            </td>
+            
+            <td>
+              
+                True
+              
+            </td>
+            
+            <td>
+              
+                nan
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                CVX
+              
+            </td>
+            
+            <td>
+              
+                $152.26
+              
+            </td>
+            
+            <td>
+              
+                45.01%
+              
+            </td>
+            
+            <td>
+              
+                54.99%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                -2.90%
+              
+            </td>
+            
+            <td>
+              
+                -0.1917353576743198
+              
+            </td>
+            
+            <td>
+              
+                0.1337076814743197
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.55 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0156767651135506
+              
+            </td>
+            
+            <td>
+              
+                $0.01
+              
+            </td>
+            
+            <td>
+              
+                $157.03
+              
+            </td>
+            
+            <td>
+              
+                $137.03
+              
+            </td>
+            
+            <td>
+              
+                0.0310611086616359
+              
+            </td>
+            
+            <td>
+              
+                23.62207685669124
+              
+            </td>
+            
+            <td>
+              
+                -0.0242694912184839
+              
+            </td>
+            
+            <td>
+              
+                False
+              
+            </td>
+            
+            <td>
+              
+                Expected move too small
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                BAC
+              
+            </td>
+            
+            <td>
+              
+                $54.16
+              
+            </td>
+            
+            <td>
+              
+                45.58%
+              
+            </td>
+            
+            <td>
+              
+                54.42%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                7.38%
+              
+            </td>
+            
+            <td>
+              
+                -0.0889233830173046
+              
+            </td>
+            
+            <td>
+              
+                0.2365196561313349
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.54 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0178439629230985
+              
+            </td>
+            
+            <td>
+              
+                $0.02
+              
+            </td>
+            
+            <td>
+              
+                $52.23
+              
+            </td>
+            
+            <td>
+              
+                $59.58
+              
+            </td>
+            
+            <td>
+              
+                0.1696008448421599
+              
+            </td>
+            
+            <td>
+              
+                42.58249460640496
+              
+            </td>
+            
+            <td>
+              
+                0.0803909573794148
+              
+            </td>
+            
+            <td>
+              
+                True
+              
+            </td>
+            
+            <td>
+              
+                nan
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                PG
+              
+            </td>
+            
+            <td>
+              
+                $145.36
+              
+            </td>
+            
+            <td>
+              
+                53.85%
+              
+            </td>
+            
+            <td>
+              
+                53.85%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                6.71%
+              
+            </td>
+            
+            <td>
+              
+                -0.0956497874130967
+              
+            </td>
+            
+            <td>
+              
+                0.2297932517355428
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.54 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0161127095326087
+              
+            </td>
+            
+            <td>
+              
+                $0.02
+              
+            </td>
+            
+            <td>
+              
+                $140.68
+              
+            </td>
+            
+            <td>
+              
+                $159.90
+              
+            </td>
+            
+            <td>
+              
+                -0.0739778969771634
+              
+            </td>
+            
+            <td>
+              
+                30.58344725506922
+              
+            </td>
+            
+            <td>
+              
+                -0.0697395112084112
+              
+            </td>
+            
+            <td>
+              
+                False
+              
+            </td>
+            
+            <td>
+              
+                Price below DMA200
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                WMT
+              
+            </td>
+            
+            <td>
+              
+                $114.84
+              
+            </td>
+            
+            <td>
+              
+                46.35%
+              
+            </td>
+            
+            <td>
+              
+                53.65%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                -5.80%
+              
+            </td>
+            
+            <td>
+              
+                -0.2207465177260381
+              
+            </td>
+            
+            <td>
+              
+                0.1046965214226014
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.54 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0217445296191691
+              
+            </td>
+            
+            <td>
+              
+                $0.01
+              
+            </td>
+            
+            <td>
+              
+                $119.83
+              
+            </td>
+            
+            <td>
+              
+                $103.36
+              
+            </td>
+            
+            <td>
+              
+                0.1727870972022329
+              
+            </td>
+            
+            <td>
+              
+                28.685583326077964
+              
+            </td>
+            
+            <td>
+              
+                0.1437107075938344
+              
+            </td>
+            
+            <td>
+              
+                True
+              
+            </td>
+            
+            <td>
+              
+                nan
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                CSCO
+              
+            </td>
+            
+            <td>
+              
+                $77.76
+              
+            </td>
+            
+            <td>
+              
+                46.76%
+              
+            </td>
+            
+            <td>
+              
+                53.24%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                6.98%
+              
+            </td>
+            
+            <td>
+              
+                -0.0929014026937788
+              
+            </td>
+            
+            <td>
+              
+                0.2325416364548607
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.53 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0221009601596678
+              
+            </td>
+            
+            <td>
+              
+                $0.01
+              
+            </td>
+            
+            <td>
+              
+                $74.32
+              
+            </td>
+            
+            <td>
+              
+                $85.54
+              
+            </td>
+            
+            <td>
+              
+                0.1826263200688608
+              
+            </td>
+            
+            <td>
+              
+                31.23905725495188
+              
+            </td>
+            
+            <td>
+              
+                0.1482393018651726
+              
+            </td>
+            
+            <td>
+              
+                True
+              
+            </td>
+            
+            <td>
+              
+                nan
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                AAPL
+              
+            </td>
+            
+            <td>
+              
+                $280.70
+              
+            </td>
+            
+            <td>
+              
+                53.22%
+              
+            </td>
+            
+            <td>
+              
+                53.22%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                -2.58%
+              
+            </td>
+            
+            <td>
+              
+                -0.1885204825568942
+              
+            </td>
+            
+            <td>
+              
+                0.1369225565917453
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.53 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.020621892581795
+              
+            </td>
+            
+            <td>
+              
+                $0.01
+              
+            </td>
+            
+            <td>
+              
+                $292.28
+              
+            </td>
+            
+            <td>
+              
+                $252.63
+              
+            </td>
+            
+            <td>
+              
+                0.2334702149490307
+              
+            </td>
+            
+            <td>
+              
+                9.081305751520311
+              
+            </td>
+            
+            <td>
+              
+                0.2389088067055864
+              
+            </td>
+            
+            <td>
+              
+                False
+              
+            </td>
+            
+            <td>
+              
+                ADX too low
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                JPM
+              
+            </td>
+            
+            <td>
+              
+                $316.10
+              
+            </td>
+            
+            <td>
+              
+                46.84%
+              
+            </td>
+            
+            <td>
+              
+                53.16%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                2.46%
+              
+            </td>
+            
+            <td>
+              
+                -0.1380745240646187
+              
+            </td>
+            
+            <td>
+              
+                0.1873685150840209
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.53 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0205789388718178
+              
+            </td>
+            
+            <td>
+              
+                $0.01
+              
+            </td>
+            
+            <td>
+              
+                $303.09
+              
+            </td>
+            
+            <td>
+              
+                $347.71
+              
+            </td>
+            
+            <td>
+              
+                0.139523802400729
+              
+            </td>
+            
+            <td>
+              
+                33.0565039950434
+              
+            </td>
+            
+            <td>
+              
+                0.0568868892524097
+              
+            </td>
+            
+            <td>
+              
+                False
+              
+            </td>
+            
+            <td>
+              
+                Expected move too small
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                MSFT
+              
+            </td>
+            
+            <td>
+              
+                $480.84
+              
+            </td>
+            
+            <td>
+              
+                52.62%
+              
+            </td>
+            
+            <td>
+              
+                52.62%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                0.80%
+              
+            </td>
+            
+            <td>
+              
+                -0.1547102765285354
+              
+            </td>
+            
+            <td>
+              
+                0.1707327626201042
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.53 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.020952431442184
+              
+            </td>
+            
+            <td>
+              
+                $0.00
+              
+            </td>
+            
+            <td>
+              
+                $460.69
+              
+            </td>
+            
+            <td>
+              
+                $528.92
+              
+            </td>
+            
+            <td>
+              
+                0.0275427119006342
+              
+            </td>
+            
+            <td>
+              
+                77.5754792267079
+              
+            </td>
+            
+            <td>
+              
+                -0.0372325455009179
+              
+            </td>
+            
+            <td>
+              
+                False
+              
+            </td>
+            
+            <td>
+              
+                Expected move too small
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                MA
+              
+            </td>
+            
+            <td>
+              
+                $542.31
+              
+            </td>
+            
+            <td>
+              
+                52.58%
+              
+            </td>
+            
+            <td>
+              
+                52.58%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                -3.26%
+              
+            </td>
+            
+            <td>
+              
+                -0.1953546419762791
+              
+            </td>
+            
+            <td>
+              
+                0.1300883971723604
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.53 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0192720729120725
+              
+            </td>
+            
+            <td>
+              
+                $0.01
+              
+            </td>
+            
+            <td>
+              
+                $563.21
+              
+            </td>
+            
+            <td>
+              
+                $488.08
+              
+            </td>
+            
+            <td>
+              
+                -0.02939917986414
+              
+            </td>
+            
+            <td>
+              
+                31.659838681555843
+              
+            </td>
+            
+            <td>
+              
+                -0.0627464254920282
+              
+            </td>
+            
+            <td>
+              
+                False
+              
+            </td>
+            
+            <td>
+              
+                Price below DMA200
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                GOOGL
+              
+            </td>
+            
+            <td>
+              
+                $317.62
+              
+            </td>
+            
+            <td>
+              
+                51.82%
+              
+            </td>
+            
+            <td>
+              
+                51.82%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                8.94%
+              
+            </td>
+            
+            <td>
+              
+                -0.0732907841202446
+              
+            </td>
+            
+            <td>
+              
+                0.2521522550283949
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.52 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0310883402463905
+              
+            </td>
+            
+            <td>
+              
+                $0.01
+              
+            </td>
+            
+            <td>
+              
+                $297.87
+              
+            </td>
+            
+            <td>
+              
+                $349.38
+              
+            </td>
+            
+            <td>
+              
+                0.5532201688432287
+              
+            </td>
+            
+            <td>
+              
+                19.73276897404828
+              
+            </td>
+            
+            <td>
+              
+                0.328009355474538
+              
+            </td>
+            
+            <td>
+              
+                True
+              
+            </td>
+            
+            <td>
+              
+                nan
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="unsure">
+            
+            <td>
+              
+                UNH
+              
+            </td>
+            
+            <td>
+              
+                $333.49
+              
+            </td>
+            
+            <td>
+              
+                50.83%
+              
+            </td>
+            
+            <td>
+              
+                50.83%
+              
+            </td>
+            
+            <td>
+              
+                0.6204263671600725
+              
+            </td>
+            
+            <td>
+              
+                7.22%
+              
+            </td>
+            
+            <td>
+              
+                -0.0905100721927869
+              
+            </td>
+            
+            <td>
+              
+                0.2349329669558526
+              
+            </td>
+            
+            <td>
+              
+                0.3254430391486396
+              
+            </td>
+            
+            <td>
+              
+                <span class="">UNSURE</span>
+              
+            </td>
+            
+            <td>
+              
+                low confidence (0.51 < tau 0.62)
+              
+            </td>
+            
+            <td>
+              
+                0.0261712787569318
+              
+            </td>
+            
+            <td>
+              
+                $0.01
+              
+            </td>
+            
+            <td>
+              
+                $316.03
+              
+            </td>
+            
+            <td>
+              
+                $366.84
+              
+            </td>
+            
+            <td>
+              
+                -0.0731157588453807
+              
+            </td>
+            
+            <td>
+              
+                21.84618115554905
+              
+            </td>
+            
+            <td>
+              
+                -0.0322569504005784
+              
+            </td>
+            
+            <td>
+              
+                False
+              
+            </td>
+            
+            <td>
+              
+                Price below DMA200
+              
+            </td>
+            
+            <td>
+              
+                ⏸️
+              
+            </td>
+            
+          </tr>
+          
+        </tbody>
+      </table>
+      
+      
+      <div class="portfolio-section">
+        <h2>💼 Optimized Portfolio Allocation</h2>
+        <div class="portfolio-table">
+          <table>
+            <thead>
+              <tr>
+                <th style="text-align: left;">Ticker</th>
+                <th>Weight</th>
+                <th>Allocation</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">XOM</td>
+                <td>5.00%</td>
+                <td>
+                  <div class="weight-bar" style="width: 25.0px;">
+                    5.0%
+                  </div>
+                </td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">JNJ</td>
+                <td>5.00%</td>
+                <td>
+                  <div class="weight-bar" style="width: 25.0px;">
+                    5.0%
+                  </div>
+                </td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">TSLA</td>
+                <td>5.00%</td>
+                <td>
+                  <div class="weight-bar" style="width: 25.0px;">
+                    5.0%
+                  </div>
+                </td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">AMZN</td>
+                <td>1.48%</td>
+                <td>
+                  <div class="weight-bar" style="width: 7.0px;">
+                    1.5%
+                  </div>
+                </td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">NVDA</td>
+                <td>4.56%</td>
+                <td>
+                  <div class="weight-bar" style="width: 23.0px;">
+                    4.6%
+                  </div>
+                </td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">CVX</td>
+                <td>2.90%</td>
+                <td>
+                  <div class="weight-bar" style="width: 14.0px;">
+                    2.9%
+                  </div>
+                </td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">BAC</td>
+                <td>5.00%</td>
+                <td>
+                  <div class="weight-bar" style="width: 25.0px;">
+                    5.0%
+                  </div>
+                </td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">PG</td>
+                <td>0.43%</td>
+                <td>
+                  <div class="weight-bar" style="width: 2.0px;">
+                    0.4%
+                  </div>
+                </td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">WMT</td>
+                <td>5.00%</td>
+                <td>
+                  <div class="weight-bar" style="width: 25.0px;">
+                    5.0%
+                  </div>
+                </td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">CSCO</td>
+                <td>5.00%</td>
+                <td>
+                  <div class="weight-bar" style="width: 25.0px;">
+                    5.0%
+                  </div>
+                </td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">AAPL</td>
+                <td>5.00%</td>
+                <td>
+                  <div class="weight-bar" style="width: 25.0px;">
+                    5.0%
+                  </div>
+                </td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">JPM</td>
+                <td>5.00%</td>
+                <td>
+                  <div class="weight-bar" style="width: 25.0px;">
+                    5.0%
+                  </div>
+                </td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">MSFT</td>
+                <td>0.92%</td>
+                <td>
+                  <div class="weight-bar" style="width: 5.0px;">
+                    0.9%
+                  </div>
+                </td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">GOOGL</td>
+                <td>5.00%</td>
+                <td>
+                  <div class="weight-bar" style="width: 25.0px;">
+                    5.0%
+                  </div>
+                </td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td style="text-align: left; font-weight: 600;">UNH</td>
+                <td>1.66%</td>
+                <td>
+                  <div class="weight-bar" style="width: 8.0px;">
+                    1.7%
+                  </div>
+                </td>
+              </tr>
+              
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="footer">
+      <p>Generated on 2025-12-05 07:08:30 | Quantitative Trading Model v1.0</p>
+    </div>
+  </div>
+</body>
+</html>

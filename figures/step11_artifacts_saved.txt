@@ -1,0 +1,25 @@
+
+================================================================================
+FINAL ARTEFACT FILES SAVED
+================================================================================
+
+MODELS DIRECTORY (models/):
+  [OK] lgb_clf.pkl (2,082,084 bytes)
+  [OK] lgb_reg.pkl (2,110,162 bytes)
+  [OK] meta_logit.pkl (1,199 bytes)
+  [OK] uncertainty.json (242 bytes)
+  [OK] xgb_clf.pkl (2,422,884 bytes)
+
+DATA DIRECTORY (data/):
+  [OK] portfolio_latest.csv (7,467 bytes)
+  [OK] signals_latest.csv (4,565 bytes)
+
+RAW DATA DIRECTORY (raw/):
+  [OK] 20 parquet files
+
+WEB DIRECTORY (web/):
+  [OK] signals.html (60,238 bytes)
+
+================================================================================
+PIPELINE COMPLETE - ALL ARTEFACTS GENERATED
+================================================================================

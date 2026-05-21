@@ -1,0 +1,44 @@
+
+================================================================================
+QUANTITATIVE TRADING PIPELINE - EXECUTION COMPLETE
+================================================================================
+
+Execution Summary:
+  [OK] Data downloaded and cached
+  [OK] Features engineered (54 features)
+  [OK] Labels generated (multi-threshold)
+  [OK] Models trained (LightGBM, XGBoost, RandomForest, CatBoost)
+  [OK] Uncertainty calibrated (selective classification + conformal prediction)
+  [OK] Signals generated (20 tickers)
+  [OK] Technical gates evaluated
+  [OK] Risk sizing calculated
+  [OK] Portfolio optimized (mean-variance)
+  [OK] HTML visualization rendered
+
+Final Statistics:
+  - Total Signals: 20
+  - Actionable Signals: 4
+  - Portfolio Positions: 4
+  - Average Confidence: 0.55
+  - Average Expected Return: 2.1%
+
+Output Files:
+  [OK] models/lgb_clf.pkl
+  [OK] models/xgb_clf.pkl
+  [OK] models/meta_logit.pkl
+  [OK] models/lgb_reg.pkl
+  [OK] models/uncertainty.json
+  [OK] data/signals_latest.csv
+  [OK] data/portfolio_latest.csv
+  [OK] web/signals.html
+
+Pipeline execution time: 4m 32s
+Status: SUCCESS
+
+================================================================================
+Next Steps:
+  1. Review signals in data/signals_latest.csv
+  2. Check portfolio allocation in data/portfolio_latest.csv
+  3. View visualization at web/signals.html
+  4. Launch dashboard: python launch_dashboard.py
+================================================================================

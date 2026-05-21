@@ -1,0 +1,40 @@
+
+================================================================================
+TECHNICAL GATES EVALUATION
+================================================================================
+
+Total Signals: 20
+Gates Passed: 6
+Gates Failed: 14
+
+Pass Rate: 30.0%
+
+Signals with Gates Passed:
+   ticker  gates_pass  dma200  adx14  mom_60  atr_pct
+0   GOOGL        True  0.5532  19.73  0.3280   0.0311
+1     BAC        True  0.1696  42.58  0.0804   0.0178
+3    CSCO        True  0.1826  31.24  0.1482   0.0221
+16    WMT        True  0.1728  28.69  0.1437   0.0217
+17    JNJ        True  0.2063  66.81  0.1591   0.0145
+18   NVDA        True  0.1869  67.80  0.0342   0.0375
+
+Signals with Gates Failed:
+   ticker  gates_pass             gates_reason
+2     UNH       False       Price below DMA200
+4      PG       False       Price below DMA200
+5       V       False       Price below DMA200
+6      HD       False       Price below DMA200
+7     JPM       False  Expected move too small
+8    AMZN       False  Expected move too small
+9     DIS       False       Price below DMA200
+10   MSFT       False  Expected move too small
+11   TSLA       False  Expected move too small
+12   AAPL       False              ADX too low
+
+Gate Failure Reasons:
+gates_reason
+Price below DMA200         7
+Expected move too small    5
+ADX too low                2
+
+================================================================================

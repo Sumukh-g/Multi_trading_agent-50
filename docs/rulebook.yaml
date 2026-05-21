@@ -1,0 +1,37 @@
+# Rulebook v1 — configurable gates / position / risk per regime
+gates:
+  min_price_above_dma:
+    dma: 200
+    require: true
+  min_adx:
+    threshold: 18
+  min_momentum_60d:
+    threshold: 0.03       # +3% over 60d for longs (reverse for shorts)
+  max_atr_pct:
+    threshold: 0.08       # avoid extreme microstructure risk (>8% ATR/Close)
+  volume_filter:
+    min_dollar_vol: 10000000  # $10M ADV proxy (if data available)
+decisions:
+  epsilon: 0.12           # target error on accepted predictions
+  min_confidence: auto    # auto from calibration (tau), can override numeric
+  interval_alpha: 0.2     # ~80% interval
+  min_expected_move: 0.03 # only act if |expected 30d| >= 3%
+risk:
+  base_risk_per_name: 0.01
+  trail_mult: 1.5
+  hard_stop_mult: 2.0
+  scale_out_at: 0.10      # +10% first target
+regimes:
+  low:
+    size_multiplier: 1.0
+    stop_mult: 1.5
+  normal:
+    size_multiplier: 1.0
+    stop_mult: 1.8
+  high:
+    size_multiplier: 0.6
+    stop_mult: 2.2
+portfolio:
+  max_weight_per_name: 0.05
+  max_sector_weight: 0.25   # sector calc requires mapping; optional
+  turnover_penalty: 0.001

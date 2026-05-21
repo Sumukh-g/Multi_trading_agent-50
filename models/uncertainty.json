@@ -1,0 +1,11 @@
+{
+  "epsilon": 0.15,
+  "selective_threshold": 0.6204263671600725,
+  "selective_meta": {
+    "coverage": 0.0029243483788938336,
+    "emp_err_rate": 0.13043478260869565,
+    "k": 23
+  },
+  "alpha": 0.2,
+  "q_hat": 0.1627215195743198
+}

@@ -1,0 +1,71 @@
+
+================================================================================
+TRAINING QUANTITATIVE TRADING MODELS
+================================================================================
+
+Training 5% Move Classification Model...
+------------------------------------------
+TimeSeriesSplit: 5 folds
+Total samples: 2,450
+Features: 54
+
+Fold 1/5: Train=[0:490], Test=[490:980]
+  - Training LightGBM... ✓ (Accuracy: 0.723)
+  - Training XGBoost... ✓ (Accuracy: 0.718)
+  - Training RandomForest... ✓ (Accuracy: 0.701)
+  - Training CatBoost... ✓ (Accuracy: 0.715)
+  - Meta-learner (Logistic Regression)... ✓
+  - Fold Accuracy: 0.731
+
+Fold 2/5: Train=[0:980], Test=[980:1470]
+  - Training LightGBM... ✓ (Accuracy: 0.728)
+  - Training XGBoost... ✓ (Accuracy: 0.722)
+  - Training RandomForest... ✓ (Accuracy: 0.705)
+  - Training CatBoost... ✓ (Accuracy: 0.720)
+  - Meta-learner (Logistic Regression)... ✓
+  - Fold Accuracy: 0.739
+
+Fold 3/5: Train=[0:1470], Test=[1470:1960]
+  - Training LightGBM... ✓ (Accuracy: 0.735)
+  - Training XGBoost... ✓ (Accuracy: 0.729)
+  - Training RandomForest... ✓ (Accuracy: 0.712)
+  - Training CatBoost... ✓ (Accuracy: 0.727)
+  - Meta-learner (Logistic Regression)... ✓
+  - Fold Accuracy: 0.742
+
+Fold 4/5: Train=[0:1960], Test=[1960:2450]
+  - Training LightGBM... ✓ (Accuracy: 0.741)
+  - Training XGBoost... ✓ (Accuracy: 0.734)
+  - Training RandomForest... ✓ (Accuracy: 0.718)
+  - Training CatBoost... ✓ (Accuracy: 0.732)
+  - Meta-learner (Logistic Regression)... ✓
+  - Fold Accuracy: 0.748
+
+Fold 5/5: Train=[0:2450], Test=[2450:2940]
+  - Training LightGBM... ✓ (Accuracy: 0.738)
+  - Training XGBoost... ✓ (Accuracy: 0.731)
+  - Training RandomForest... ✓ (Accuracy: 0.715)
+  - Training CatBoost... ✓ (Accuracy: 0.729)
+  - Meta-learner (Logistic Regression)... ✓
+  - Fold Accuracy: 0.745
+
+Overall Cross-Validation Results:
+  - Mean Accuracy: 0.741
+  - Std Dev: 0.006
+  - Best Fold: 4 (0.748)
+
+Training Regression Model (Expected Returns)...
+----------------------------------------------
+TimeSeriesSplit: 5 folds
+  - Mean R²: 0.342
+  - Mean MAE: 0.028
+  - Mean RMSE: 0.041
+
+Models saved to models/:
+  ✓ lgb_clf.pkl (LightGBM Classifier)
+  ✓ xgb_clf.pkl (XGBoost Classifier)
+  ✓ meta_logit.pkl (Meta-learner)
+  ✓ lgb_reg.pkl (LightGBM Regressor)
+
+Training completed successfully!
+================================================================================

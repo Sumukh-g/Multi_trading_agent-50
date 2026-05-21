@@ -1,0 +1,42 @@
+
+================================================================================
+INFERENCE OUTPUT - TRADING SIGNALS
+================================================================================
+
+Total Signals Generated: 20
+Date: 2025-12-18 03:52:35
+
+Sample Signals (Top 10 by Signal Strength):
+  ticker   price  prob_5pct_30d  prob_direction  exp_30d_return  confidence decision soft_decision
+0  GOOGL  317.62         0.5182            0.68          0.0894      0.5182   UNSURE          LONG
+1    BAC   54.16         0.5442            0.65          0.0738      0.5442   UNSURE          LONG
+2    UNH  333.49         0.5083            0.64          0.0722      0.5083   UNSURE          LONG
+3   CSCO   77.76         0.5324            0.64          0.0698      0.5324   UNSURE          LONG
+4     PG  145.36         0.5385            0.63          0.0671      0.5385   UNSURE          LONG
+5      V  327.10         0.5685            0.57          0.0339      0.5685   UNSURE          LONG
+6     HD  351.17         0.5780            0.56          0.0324      0.5780   UNSURE          LONG
+7    JPM  316.10         0.5316            0.55          0.0246      0.5316   UNSURE          LONG
+8   AMZN  229.11         0.5573            0.54          0.0221      0.5573   UNSURE          LONG
+9    DIS  105.47         0.5558            0.53          0.0140      0.5558   UNSURE          LONG
+
+Signal Statistics:
+  - Average Confidence: 0.551
+  - Average Expected Return: 0.460%
+  - Decision Distribution:
+decision
+UNSURE    20
+
+Prediction Intervals (Sample):
+  ticker  exp_30d_return  pi_low  pi_high  pi_width
+0  GOOGL          0.0894 -0.0733   0.2522    0.3255
+1    BAC          0.0738 -0.0889   0.2365    0.3255
+2    UNH          0.0722 -0.0905   0.2349    0.3255
+3   CSCO          0.0698 -0.0929   0.2325    0.3255
+4     PG          0.0671 -0.0956   0.2298    0.3255
+5      V          0.0339 -0.1288   0.1966    0.3255
+6     HD          0.0324 -0.1303   0.1951    0.3255
+7    JPM          0.0246 -0.1381   0.1874    0.3255
+8   AMZN          0.0221 -0.1406   0.1848    0.3255
+9    DIS          0.0140 -0.1487   0.1767    0.3255
+
+================================================================================
